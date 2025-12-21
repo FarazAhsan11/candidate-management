@@ -3,8 +3,8 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, FileUser, BriefcaseBusiness, Wallet } from 'lucide-react';
-
+import { ChevronLeft, ChevronRight, FileUser, BriefcaseBusiness, Wallet, Download } from 'lucide-react';
+import { Button } from '../../components/ui/button';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -22,31 +22,43 @@ export default function CandidateInfo({ candidate }: Props) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div className="bg-[#dedbd2]  rounded-lg  flex flex-col">
-    
+      <div className="bg-[#dedbd2] rounded-lg flex flex-col">
         {candidate.resumeFile ? (
           <div className="flex flex-col flex-1">
             <div className="flex-1 bg-white shadow-lg rounded overflow-auto flex justify-center p-2">
               <Document file={candidate.resumeFile} onLoadSuccess={onDocumentLoadSuccess}>
-                <Page pageNumber={pageNumber} width={380}/>
+                <Page pageNumber={pageNumber} width={380} />
               </Document>
             </div>
-            <div className="flex items-center justify-center gap-4 mt-4 text-[#23140c]">
-              <button
-                disabled={pageNumber <= 1}
-                onClick={() => setPageNumber(pageNumber - 1)}
-                className="p-2 bg-[#4a2c1a] text-[#dedbd2] rounded disabled:opacity-50 cursor-pointer"
+
+            <div className="flex items-center justify-between mt-4 px-2 text-[#23140c]">
+              <div className="flex items-center gap-4">
+                <button
+                  disabled={pageNumber <= 1}
+                  onClick={() => setPageNumber(pageNumber - 1)}
+                  className="p-2 bg-[#4a2c1a] text-[#dedbd2] rounded disabled:opacity-50 cursor-pointer"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <span className="text-sm">Page {pageNumber} of {numPages}</span>
+                <button
+                  disabled={pageNumber >= (numPages || 1)}
+                  onClick={() => setPageNumber(pageNumber + 1)}
+                  className="p-2 bg-[#4a2c1a] text-[#dedbd2] rounded disabled:opacity-50 cursor-pointer"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-[#4a2c1a] text-[#dedbd2] border-none hover:bg-[#5a3c2a] hover:text-[#dedbd2]"
+                onClick={() => window.open(candidate.resumeFile, '_blank')}
               >
-                <ChevronLeft size={16} />
-              </button>
-              <span className="text-sm">Page {pageNumber} of {numPages}</span>
-              <button
-                disabled={pageNumber >= (numPages || 1)}
-                onClick={() => setPageNumber(pageNumber + 1)}
-                className="p-2 bg-[#4a2c1a] text-[#dedbd2] rounded disabled:opacity-50 cursor-pointer"
-              >
-                <ChevronRight size={16} />
-              </button>
+                <Download className="h-4 w-4 mr-1" />
+                Download
+              </Button>
             </div>
           </div>
         ) : (
