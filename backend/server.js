@@ -3,9 +3,15 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import CandidateRoutes from './routes/CandidateRoutes.js';
 import cors from 'cors';
+import fs from 'fs';
 
 dotenv.config();
 connectDB();
+
+const tempDir = './public/temp';
+if (!fs.existsSync(tempDir)) {
+  fs.mkdirSync(tempDir, { recursive: true });
+}
 
 const app = express();
 
