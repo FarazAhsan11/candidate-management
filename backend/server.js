@@ -8,11 +8,17 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors())
+
+app.use(cors({
+  origin: ['https://candidate-management-sepia.vercel.app', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', CandidateRoutes
-);
+app.use('/api', CandidateRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
