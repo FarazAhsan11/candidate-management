@@ -16,7 +16,7 @@ export function useCandidate() {
     dispatch({ type: 'SET_LOADING', payload: true });
     try {
       const data = await candidateService.getAll();
-      dispatch({ type: 'SET_CANDIDATES', payload: data });
+      dispatch({ type: 'SET_CANDIDATES', payload: data.candidates });
     } catch (err) {
       dispatch({ type: 'SET_ERROR', payload: 'Failed to fetch candidates' });
     } finally {

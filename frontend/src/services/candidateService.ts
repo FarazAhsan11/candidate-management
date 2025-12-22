@@ -7,11 +7,35 @@ const api = axios.create({
   baseURL: API_URL,
 });
 
+
+export interface CandidateQueryParams {
+  search?: string;      
+  position?: string;    
+  status?: string;    
+  experience?: string; 
+  sortBy?: string;      
+  page?: number;      
+  limit?: number;     
+}
+
+export interface CandidateResponse {
+  candidates: Candidate[];
+  pagination: {
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+    itemsPerPage: number;
+  };
+  positions: string[];  
+}
+
 export const candidateService = {
-  getAll: async (): Promise<Candidate[]> => {
-    const response = await api.get('/candidates');
+
+  getAll: async (params?: CandidateQueryParams): Promise<CandidateResponse> => {
+    const response = await api.get('/candidates', { params });
     return response.data;
   },
+
 
   getById: async (id: string): Promise<Candidate> => {
     const response = await api.get(`/candidates/${id}`);
@@ -25,11 +49,13 @@ export const candidateService = {
     return response.data.candidate;
   },
 
+
   update: async (id: string, data: Partial<Candidate>): Promise<Candidate> => {
     const response = await api.patch(`/candidates/${id}`, data);
     return response.data.candidate;
   },
 
+  
   delete: async (id: string): Promise<{ message: string }> => {
     const response = await api.delete(`/candidates/${id}`);
     return response.data;

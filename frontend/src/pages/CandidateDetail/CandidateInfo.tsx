@@ -3,6 +3,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { useState, useEffect } from "react";
+import LoomPlayer from 'react-loom-player';
 import {
   ChevronLeft,
   ChevronRight,
@@ -12,6 +13,12 @@ import {
   Download,
 } from "lucide-react";
 import { Button } from "../../components/ui/button";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../components/ui/tabs"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -21,6 +28,8 @@ interface Props {
 
 export default function CandidateInfo({ candidate }: Props) {
   const [pdfWidth, setPdfWidth] = useState(400);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
+
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -43,7 +52,13 @@ export default function CandidateInfo({ candidate }: Props) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
       <div className="bg-[#dedbd2] rounded-lg flex flex-col lg:col-span-3">
-        {candidate.resumeFile ? (
+      <Tabs defaultValue="resume">
+      <TabsList className="bg-[#dedbd2] shadow-lg">
+        <TabsTrigger value="resume">Resume</TabsTrigger>
+        <TabsTrigger value="loom-video">Loom Video</TabsTrigger>
+      </TabsList>
+      <TabsContent value="resume">
+                {candidate.resumeFile ? (
           <div className="flex flex-col ">
             <div className=" bg-white shadow-lg rounded overflow-auto flex justify-center p-2">
               <Document
@@ -91,6 +106,32 @@ export default function CandidateInfo({ candidate }: Props) {
             <p className="text-gray-500">No resume uploaded</p>
           </div>
         )}
+      </TabsContent>
+<TabsContent value="loom-video">
+  {candidate.loomLink ? (
+    <div className="relative [&_iframe]:max-w-full">
+      {isVideoLoading && (
+        <div className="absolute bg-[#dedbd2] inset-0 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4a2c1a]"></div>
+        </div>
+      )}
+      <LoomPlayer 
+        src={candidate.loomLink} 
+        autoplay 
+        muted 
+        timestamps={30}
+        onLoad={() => setIsVideoLoading(false)}
+      />
+    </div>
+  ) : (
+    <div className="flex-1 flex items-center justify-center">
+      <p className="text-gray-500">No Video Available</p>
+    </div>
+  )}
+</TabsContent>
+
+      </Tabs>
+
       </div>
 
       <div className="flex flex-col gap-2 lg:col-span-2">
