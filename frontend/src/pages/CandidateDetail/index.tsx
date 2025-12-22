@@ -47,7 +47,9 @@ export default function CandidateDetail() {
 
   return (
     <div className="min-h-screen bg-[#dedbd2]  p-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="px-4 sm:px-8 lg:px-16">
+
+
         <div className="flex gap-4 mb-6  pb-4">
           <button
             onClick={() => navigate('/')}
@@ -56,9 +58,10 @@ export default function CandidateDetail() {
             <ArrowLeft size={20} />
            
           </button>
-          <h1 className="text-2xl font-medium text-[#23140c]">
-            {candidate.name} - {candidate.appliedPosition}
-          </h1>
+<h1 className="text-lg sm:text-2xl font-medium text-[#23140c]">
+  {candidate.name} - {candidate.appliedPosition}
+</h1>
+
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

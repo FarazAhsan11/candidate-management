@@ -114,12 +114,12 @@ export default function AddCandidateModal({ open, onClose, onSubmit }: Props) {
 
   return (
     <Sheet open={open} onOpenChange={onClose}>
-      <SheetContent side="right" className="w-full bg-[#dedbd2] sm:max-w-3xl overflow-y-auto">
+      <SheetContent side="right" className="w-full text-[#23140c] bg-[#dedbd2] sm:max-w-3xl overflow-y-auto pb-4">
         <SheetHeader>
           <SheetTitle className='px-4 font-bold'>Add New Candidate</SheetTitle>
         </SheetHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 mt-6 px-8">
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 mt-2 px-8">
             <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
               <FormField control={form.control} name="name" render={({ field }) => (
                 <FormItem>
