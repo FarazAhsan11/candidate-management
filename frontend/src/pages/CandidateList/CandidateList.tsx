@@ -102,7 +102,7 @@ export default function CandidateList({
   return (
     <>
       <Tabs value={activeTab} onValueChange={handleTabChange}>
-        <TabsList className='bg-[#dedbd2] border border-gray-400 rounded-md  shadow-lg'>
+        <TabsList className='bg-[#dedbd2] border  border-gray-400 rounded-md  shadow-lg'>
           <TabsTrigger value="cards"><IdCard /></TabsTrigger>
           <TabsTrigger value="table"><TableIcon /></TabsTrigger>
         </TabsList>
@@ -110,7 +110,8 @@ export default function CandidateList({
 
       {activeTab === 'cards' && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 px-2 sm:px-0">
+         <div  >
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 px-2 sm:px-0">
             {candidates.map((candidate) => (
               <Card
                 key={candidate._id}
@@ -143,6 +144,7 @@ export default function CandidateList({
               </Card>
             ))}
           </div>
+         </div>
           {totalPages > 1 && (
             <div className="flex justify-center items-center gap-1 sm:gap-2 mt-4 sm:mt-6 flex-wrap">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
