@@ -167,9 +167,12 @@ export default function CandidateList({
         </>
       )}
 
+    
+
  {activeTab === 'table' && (
   <>
-    <div className="mt-4 rounded-lg border border-gray-300 overflow-hidden shadow-sm h-[calc(100vh-230px)] flex flex-col">
+   <div className="mt-4 rounded-lg border border-gray-300 overflow-hidden shadow-sm max-h-[calc(100vh-230px)] flex flex-col">
+
       <div className="overflow-auto flex-1">
         <Table>
           <TableHeader>
@@ -187,6 +190,7 @@ export default function CandidateList({
                 key={candidate._id}
                 onClick={() => handleCardClick(candidate._id)}
                 className='cursor-pointer transition-colors'
+
               >
                 <TableCell className="font-medium">{candidate.name}</TableCell>
                 <TableCell className="text-gray-600">{candidate.appliedPosition}</TableCell>
@@ -244,7 +248,7 @@ export default function CandidateList({
               This action cannot be undone. This will permanently delete the candidate data.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter className="flex-col-reverse sm:flex-row gap-2 sm:gap-0">
+          <AlertDialogFooter className="flex-col-reverse sm:flex-row gap-2 sm:gap-2">
             <AlertDialogCancel className="cursor-pointer w-full sm:w-auto">Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleConfirmDelete} className="bg-red-500 hover:bg-red-600 cursor-pointer w-full sm:w-auto">
               Delete
