@@ -102,7 +102,7 @@ export default function CandidateList({
   return (
     <>
       <Tabs value={activeTab} onValueChange={handleTabChange}>
-        <TabsList className='bg-[#dedbd2] shadow-lg'>
+        <TabsList className='bg-[#dedbd2] border border-gray-400 rounded-md  shadow-lg'>
           <TabsTrigger value="cards"><IdCard /></TabsTrigger>
           <TabsTrigger value="table"><TableIcon /></TabsTrigger>
         </TabsList>
@@ -165,39 +165,53 @@ export default function CandidateList({
         </>
       )}
 
-      {activeTab === 'table' && (
-        <>
-          <Table className='mt-4' >
-            <TableHeader>
-              <TableRow >
-                <TableHead>Name</TableHead>
-                <TableHead>Position</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Experience</TableHead>
+ {activeTab === 'table' && (
+  <>
+    <div className="mt-4 rounded-lg border border-gray-300 overflow-hidden shadow-sm h-[calc(100vh-230px)] flex flex-col">
+      <div className="overflow-auto flex-1">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-[#23140c] hover:bg-[#23140c]">
+              <TableHead className="text-[#dedbd2] font-semibold">Name</TableHead>
+              <TableHead className="text-[#dedbd2] font-semibold">Position</TableHead>
+              <TableHead className="text-[#dedbd2] font-semibold">Status</TableHead>
+              <TableHead className="text-[#dedbd2] font-semibold">Experience</TableHead>
+              <TableHead className="text-[#dedbd2] font-semibold text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {candidates.map((candidate) => (
+              <TableRow
+                key={candidate._id}
+                onClick={() => handleCardClick(candidate._id)}
+                className='cursor-pointer transition-colors'
+              >
+                <TableCell className="font-medium">{candidate.name}</TableCell>
+                <TableCell className="text-gray-600">{candidate.appliedPosition}</TableCell>
+                <TableCell>
+                  <Badge variant={getStatusVariant(candidate.status)}>
+                    {candidate.status}
+                  </Badge>
+                </TableCell>
+                <TableCell className="text-gray-600">{candidate.experienceYears} years</TableCell>
+                <TableCell className="text-right">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDeleteId(candidate._id);
+                    }}
+                    className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-md transition-colors cursor-pointer"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </TableCell>
               </TableRow>
-            </TableHeader>
-            <TableBody>
-              {candidates.map(candidate => (
-                <TableRow className='group cursor-pointer' key={candidate._id} onClick={() => handleCardClick(candidate._id)}>
-                  <TableCell>{candidate.name}</TableCell>
-                  <TableCell>{candidate.appliedPosition}</TableCell>
-                  <TableCell>{candidate.status}</TableCell>
-                  <TableCell>{candidate.experienceYears}</TableCell>
-                  <TableCell>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDeleteId(candidate._id);
-                      }}
-                      className="opacity-100 sm:opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700 transition-opacity cursor-pointer"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+
           {totalPages > 1 && (
             <div className="flex justify-center items-center gap-1 sm:gap-2 mt-4 sm:mt-6 flex-wrap">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (

@@ -113,7 +113,8 @@ export default function AddCandidateModal({ open, onClose, onSubmit }: Props) {
   };
 
   return (
-    <Sheet open={open} onOpenChange={onClose}>
+<Sheet open={open} onOpenChange={() => { form.reset(); onClose(); }}>
+
       <SheetContent side="right" className="w-full text-[#23140c] bg-[#dedbd2] sm:max-w-3xl overflow-y-auto pb-4">
         <SheetHeader>
           <SheetTitle className='px-4 font-bold'>Add New Candidate</SheetTitle>
@@ -274,7 +275,7 @@ export default function AddCandidateModal({ open, onClose, onSubmit }: Props) {
               )} />
             
             <div className="flex justify-end gap-2 pt-4">
-              <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+              <Button type="button" variant="outline" onClick={() => { form.reset(); onClose(); }} disabled={isSubmitting}>
                 Cancel
               </Button>
               <Button type="submit" disabled={isSubmitting}>
