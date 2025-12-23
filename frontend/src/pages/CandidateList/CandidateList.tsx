@@ -168,10 +168,11 @@ export default function CandidateList({
       )}
 
     
+{/* max-h-[calc(100vh-230px)] */}
 
  {activeTab === 'table' && (
   <>
-   <div className="mt-4 rounded-lg border border-gray-300 overflow-hidden shadow-sm max-h-[calc(100vh-230px)] flex flex-col">
+   <div className="mt-4 rounded-lg border border-gray-300 overflow-hidden shadow-sm  flex flex-col">
 
       <div className="overflow-auto flex-1">
         <Table>

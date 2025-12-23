@@ -9,7 +9,7 @@ import AddCandidateModal from './AddCandidateModal';
 import { Button } from '../../components/ui/button';
 import { useDebounce } from '../../hooks/useDebounce';
 
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 12;
 
 export default function CandidateListPage() {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
