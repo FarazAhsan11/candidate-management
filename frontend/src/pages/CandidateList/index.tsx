@@ -85,8 +85,13 @@ export default function CandidateListPage() {
 
   if (isInitialLoad && loading) {
     return (
-      <div className="min-h-screen bg-[#dedbd2] w-full flex items-center justify-center">
-        <div className="p-4 bg-[#dedbd2] shadow-lg rounded-lg">Loading...</div>
+      <div className="min-h-screen bg-gray-50 w-full flex items-center justify-center">
+        <div className="p-6 bg-white shadow-lg rounded-xl border border-gray-200">
+          <div className="flex items-center gap-3">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+            <span className="text-gray-700 font-medium">Loading...</span>
+          </div>
+        </div>
       </div>
     );
   }
@@ -94,13 +99,13 @@ export default function CandidateListPage() {
   if (error && isInitialLoad) return <div className="p-4 text-red-500">{error}</div>;
 
   return (
-    <div className="p-2 sm:p-4 bg-[#dedbd2] min-h-screen">
-      <div className="flex flex-col sm:flex-row p-3 sm:p-4 gap-3 sm:gap-0 sm:justify-between border rounded-md border-transparent bg-[#23140c] items-center px-3 sm:px-6 mb-4">
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#dedbd2] text-center sm:text-left">
+    <div className="p-2 sm:p-4 bg-gray-50 min-h-screen">
+      <div className="flex flex-col sm:flex-row p-4 sm:p-6 gap-3 sm:gap-0 sm:justify-between border rounded-xl border-gray-200 bg-white shadow-sm items-center px-4 sm:px-8 mb-6">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 text-center sm:text-left">
           Candidates Management Dashboard
         </h1>
-        <Button 
-          className='cursor-pointer bg-[#dedbd2] text-black hover:bg-[#d0ba98] w-full sm:w-auto' 
+        <Button
+          className='cursor-pointer bg-blue-600 text-white hover:bg-blue-700 w-full sm:w-auto shadow-sm'
           onClick={() => setIsModalOpen(true)}
         >
           + Add Candidate

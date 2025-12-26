@@ -59,11 +59,11 @@ export default function CandidateInfo({ candidate }: Props) {
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-      <div className="bg-[#dedbd2] rounded-lg flex flex-col xl:col-span-2">
+      <div className="bg-white rounded-xl py-5 px-2  border border-gray-200 shadow-sm flex flex-col xl:col-span-2">
       <Tabs defaultValue="resume">
-      <TabsList className="bg-[#dedbd2]  shadow-lg">
-        <TabsTrigger value="resume">Resume</TabsTrigger>
-        <TabsTrigger value="loom-video">Loom Video</TabsTrigger>
+      <TabsList className="bg-gray-150 border-b border-gray-300 rounded-t-xl p-4">
+        <TabsTrigger value="resume" className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium">Resume</TabsTrigger>
+        <TabsTrigger value="loom-video" className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium">Loom Video</TabsTrigger>
       </TabsList>
       <TabsContent value="resume">
                 {candidate.resumeFile ? (
@@ -77,22 +77,22 @@ export default function CandidateInfo({ candidate }: Props) {
               </Document>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 px-2 text-[#23140c]">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 px-2 text-gray-900">
               <div className="flex items-center gap-2 sm:gap-4">
                 <button
                   disabled={pageNumber <= 1}
                   onClick={() => setPageNumber(pageNumber - 1)}
-                  className="p-2 bg-[#4a2c1a] text-[#dedbd2] rounded disabled:opacity-50 cursor-pointer"
+                  className="p-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 cursor-pointer transition-colors"
                 >
                   <ChevronLeft size={16} />
                 </button>
-                <span className="text-sm">
+                <span className="text-sm font-medium text-gray-700">
                   Page {pageNumber} of {numPages}
                 </span>
                 <button
                   disabled={pageNumber >= (numPages || 1)}
                   onClick={() => setPageNumber(pageNumber + 1)}
-                  className="p-2 bg-[#4a2c1a] text-[#dedbd2] rounded disabled:opacity-50 cursor-pointer"
+                  className="p-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 cursor-pointer transition-colors"
                 >
                   <ChevronRight size={16} />
                 </button>
@@ -101,7 +101,7 @@ export default function CandidateInfo({ candidate }: Props) {
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-[#4a2c1a] text-[#dedbd2] border-none hover:bg-[#5a3c2a] hover:text-[#dedbd2]"
+                className="bg-emerald-600 text-white border-none hover:bg-emerald-700 shadow-sm"
                 onClick={() => window.open(candidate.resumeFile, "_blank")}
               >
                 <Download className="h-4 w-4 mr-1" />
@@ -142,100 +142,104 @@ export default function CandidateInfo({ candidate }: Props) {
 
       </div>
 
-      <div className="flex flex-col gap-2 xl:col-span-1">
-        <div className="bg-[#dedbd2] border border-[#23140c] rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-[#23140c] mb-4 flex items-center gap-2">
-            <span>
+      <div className="flex flex-col gap-4 xl:col-span-1">
+        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span className="text-blue-600">
               <FileUser />
-            </span>{" "}
+            </span>
             BASIC INFO
           </h2>
-          <div className="space-y-2 text-[#23140c]">
-            <p>
-              <span className="text-gray-600">Name:</span> {candidate.name}
+          <div className="space-y-3 text-gray-900">
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Name:</span>
+              <span className="font-semibold">{candidate.name}</span>
             </p>
-            <p>
-              <span className="text-gray-600">Email:</span> {candidate.email}
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Email:</span>
+              <span className="font-semibold">{candidate.email}</span>
             </p>
-            <p>
-              <span className="text-gray-600">Phone:</span> {candidate.phone}
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Phone:</span>
+              <span className="font-semibold">{candidate.phone}</span>
             </p>
-            <p>
-              <span className="text-gray-600">City:</span> {candidate.city}
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">City:</span>
+              <span className="font-semibold">{candidate.city}</span>
             </p>
           </div>
         </div>
 
-        <div className="bg-[#dedbd2] border border-[#23140c] rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-[#23140c] mb-4 flex items-center gap-2">
-            <span>
+        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span className="text-blue-600">
               <FileUser />
-            </span>{" "}
+            </span>
             EDUCATION
           </h2>
-          <div className="space-y-2 text-[#23140c]">
-            <p>
-              <span className="text-gray-600">Institute:</span>{" "}
-              {candidate.institute}
+          <div className="space-y-3 text-gray-900">
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Institute:</span>
+              <span className="font-semibold">{candidate.institute}</span>
             </p>
-            <p>
-              <span className="text-gray-600">Degree:</span>{" "}
-              {candidate.educationLevel}
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Degree:</span>
+              <span className="font-semibold">{candidate.educationLevel}</span>
             </p>
-            <p>
-              <span className="text-gray-600">Year:</span>{" "}
-              {candidate.graduationYear}
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Year:</span>
+              <span className="font-semibold">{candidate.graduationYear}</span>
             </p>
           </div>
         </div>
 
-        <div className="bg-[#dedbd2] border border-[#23140c] rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-[#23140c] mb-4 flex items-center gap-2">
-            <span>
+        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span className="text-blue-600">
               <BriefcaseBusiness />
-            </span>{" "}
+            </span>
             PROFESSIONAL
           </h2>
-          <div className="space-y-2 text-[#23140c]">
-            <p>
-              <span className="text-gray-600">Current:</span>{" "}
-              {candidate.currentPosition}
+          <div className="space-y-3 text-gray-900">
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Current:</span>
+              <span className="font-semibold">{candidate.currentPosition}</span>
             </p>
-            <p>
-              <span className="text-gray-600">Company:</span>{" "}
-              {candidate.currentCompany}
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Company:</span>
+              <span className="font-semibold">{candidate.currentCompany}</span>
             </p>
-            <p>
-              <span className="text-gray-600">Experience:</span>{" "}
-              {candidate.experienceYears} years
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Experience:</span>
+              <span className="font-semibold">{candidate.experienceYears} years</span>
             </p>
-            <p>
-              <span className="text-gray-600">Notice:</span>{" "}
-              {candidate.noticePeriod}
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Notice:</span>
+              <span className="font-semibold">{candidate.noticePeriod}</span>
             </p>
           </div>
         </div>
 
-        <div className="bg-[#dedbd2] border border-[#23140c] rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-[#23140c] mb-4 flex items-center gap-2">
-            <span>
+        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span className="text-blue-600">
               <Wallet />
-            </span>{" "}
+            </span>
             COMPENSATION
           </h2>
-          <div className="space-y-2 text-[#23140c]">
-            <p>
-              <span className="text-gray-600">Current:</span>{" "}
-              {candidate.currentSalary}
+          <div className="space-y-3 text-gray-900">
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Current:</span>
+              <span className="font-semibold">{candidate.currentSalary}</span>
             </p>
-            <p>
-              <span className="text-gray-600">Expected:</span>{" "}
-              {candidate.expectedSalary}
+            <p className="flex justify-between">
+              <span className="text-gray-500 font-medium">Expected:</span>
+              <span className="font-semibold">{candidate.expectedSalary}</span>
             </p>
             {!!candidate.expectedSalaryPartTime && (
-              <p>
-                <span className="text-gray-600">Part-time:</span>{" "}
-                {candidate.expectedSalaryPartTime}
+              <p className="flex justify-between">
+                <span className="text-gray-500 font-medium">Part-time:</span>
+                <span className="font-semibold">{candidate.expectedSalaryPartTime}</span>
               </p>
             )}
           </div>

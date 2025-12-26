@@ -115,51 +115,51 @@ export default function AddCandidateModal({ open, onClose, onSubmit }: Props) {
   return (
 <Sheet open={open} onOpenChange={() => { form.reset(); onClose(); }}>
 
-      <SheetContent side="right" className="w-full text-[#23140c] bg-[#dedbd2] sm:max-w-3xl overflow-y-auto pb-4">
+      <SheetContent side="right" className="w-full text-gray-900 bg-white border-l border-gray-200 sm:max-w-3xl overflow-y-auto pb-4">
         <SheetHeader>
-          <SheetTitle className='px-4 font-bold'>Add New Candidate</SheetTitle>
+          <SheetTitle className='px-4 font-bold text-2xl text-gray-900'>Add New Candidate</SheetTitle>
         </SheetHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 mt-2 px-8">
             <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
               <FormField control={form.control} name="name" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name*</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="John Doe" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Name*</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="John Doe" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="email" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email*</FormLabel>
-                  <FormControl><Input className='border border-white' type="email" placeholder="john@example.com" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Email*</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' type="email" placeholder="john@example.com" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="phone" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone*</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="03001234567" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Phone*</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="03001234567" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="city" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>City*</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="Lahore" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">City*</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="Lahore" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="institute" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Institute*</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="LUMS" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Institute*</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="LUMS" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="educationLevel" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Education Level*</FormLabel>
+                  <FormLabel className="font-semibold text-gray-700">Education Level*</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger><SelectValue placeholder="Select level" /></SelectTrigger>
@@ -176,74 +176,74 @@ export default function AddCandidateModal({ open, onClose, onSubmit }: Props) {
               )} />
               <FormField control={form.control} name="graduationYear" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Graduation Year</FormLabel>
-                  <FormControl><Input className='border border-white' type="number" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Graduation Year</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' type="number" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="currentPosition" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Position*</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="Software Engineer" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Current Position*</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="Software Engineer" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="currentCompany" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Company</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="TechCorp" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Current Company</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="TechCorp" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="experienceYears" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Experience (Years)</FormLabel>
-                  <FormControl><Input className='border border-white' type="number" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Experience (Years)</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' type="number" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="noticePeriod" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Notice Period*</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="1 month" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Notice Period*</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="1 month" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="appliedPosition" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Applied Position*</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="Senior Developer" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Applied Position*</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="Senior Developer" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="currentSalary" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Salary</FormLabel>
-                  <FormControl><Input className='border border-white' type="number" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Current Salary</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' type="number" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="expectedSalary" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Expected Salary</FormLabel>
-                  <FormControl><Input className='border border-white' type="number" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Expected Salary</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' type="number" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="expectedSalaryPartTime" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Expected Salary (Part-Time)</FormLabel>
-                  <FormControl><Input className='border border-white' type="number" {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Expected Salary (Part-Time)</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' type="number" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <div className="space-y-2">
-                <label className="text-sm font-medium">Resume</label>
-                <Input className='border border-white' id="resume" type="file" accept=".pdf" />
+                <label className="text-sm font-semibold text-gray-700">Resume</label>
+                <Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' id="resume" type="file" accept=".pdf" />
               </div>
             <FormField control={form.control} name="reasonToSwitch" render={({ field }) => (
               <FormItem className='col-span-full'>
-                <FormLabel>Reason to Switch*</FormLabel>
+                <FormLabel className="font-semibold text-gray-700">Reason to Switch*</FormLabel>
                 <FormControl><Textarea className='w-full' placeholder="Why are you looking for a change?" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
@@ -252,8 +252,8 @@ export default function AddCandidateModal({ open, onClose, onSubmit }: Props) {
             </div>
               <FormField control={form.control} name="loomLink" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Loom Link (Optional)</FormLabel>
-                  <FormControl><Input className='border border-white' placeholder="https://loom.com/..." {...field} /></FormControl>
+                  <FormLabel className="font-semibold text-gray-700">Loom Link (Optional)</FormLabel>
+                  <FormControl><Input className='border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200' placeholder="https://loom.com/..." {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
@@ -261,24 +261,24 @@ export default function AddCandidateModal({ open, onClose, onSubmit }: Props) {
             
               <FormField control={form.control} name="hrRemarks" render={({ field }) => (
                 <FormItem className='col-span-full'>
-                  <FormLabel>HR Remarks (Optional)</FormLabel>
+                  <FormLabel className="font-semibold text-gray-700">HR Remarks (Optional)</FormLabel>
                   <FormControl><Textarea placeholder="HR notes..." {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="interviewerRemarks" render={({ field }) => (
                 <FormItem className='col-span-full'>
-                  <FormLabel>Interviewer Remarks (Optional)</FormLabel>
+                  <FormLabel className="font-semibold text-gray-700">Interviewer Remarks (Optional)</FormLabel>
                   <FormControl><Textarea placeholder="Interviewer notes..." {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
             
-            <div className="flex justify-end gap-2 pt-4">
-              <Button type="button" variant="outline" onClick={() => { form.reset(); onClose(); }} disabled={isSubmitting}>
+            <div className="flex justify-end gap-3 pt-6 border-t border-gray-200 mt-6">
+              <Button type="button" variant="outline" onClick={() => { form.reset(); onClose(); }} disabled={isSubmitting} className="border-gray-300 hover:bg-gray-50">
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm">
                 {isSubmitting ? 'Adding...' : 'Add Candidate'}
               </Button>
             </div>
