@@ -102,9 +102,9 @@ export default function CandidateList({
   return (
     <>
       <Tabs value={activeTab} onValueChange={handleTabChange}>
-        <TabsList className='bg-[#dedbd2] border  border-gray-400 rounded-md  shadow-lg'>
-          <TabsTrigger value="cards"><IdCard /></TabsTrigger>
-          <TabsTrigger value="table"><TableIcon /></TabsTrigger>
+        <TabsList className='bg-[#dedbd2] border  border-gray-400 rounded-md shadow-lg'>
+          <TabsTrigger className='cursor-pointer' value="cards"><IdCard /></TabsTrigger>
+          <TabsTrigger className='cursor-pointer' value="table"><TableIcon /></TabsTrigger>
         </TabsList>
       </Tabs>
 
@@ -176,8 +176,8 @@ export default function CandidateList({
 
       <div className="overflow-auto flex-1">
         <Table>
-          <TableHeader>
-            <TableRow className="bg-[#23140c] hover:bg-[#23140c]">
+          <TableHeader >
+            <TableRow className="bg-[#23140c] hover:bg-[#23140c] sm:h-12 md:h-14 lg:h-12  ">
               <TableHead className="text-[#dedbd2] font-semibold">Name</TableHead>
               <TableHead className="text-[#dedbd2] font-semibold">Position</TableHead>
               <TableHead className="text-[#dedbd2] font-semibold">Status</TableHead>
@@ -190,7 +190,7 @@ export default function CandidateList({
               <TableRow
                 key={candidate._id}
                 onClick={() => handleCardClick(candidate._id)}
-                className='cursor-pointer transition-colors'
+                className='cursor-pointer sm:h-14 md:h-14 lg:h-12 '
 
               >
                 <TableCell className="font-medium">{candidate.name}</TableCell>

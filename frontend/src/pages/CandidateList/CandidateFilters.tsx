@@ -54,7 +54,7 @@ export default function CandidateFilters({
       <div className="flex justify-end mb-2">
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="p-2 border border-[#23140c] rounded-md bg-[#dedbd2] hover:bg-[#23140c] hover:text-white transition-colors"
+          className="p-2 border cursor-pointer border-[#23140c] rounded-md bg-[#dedbd2] hover:bg-[#23140c] hover:text-white transition-colors"
           title={showFilters ? 'Hide filters' : 'Show filters'}
         >
           {showFilters ? <X size={20} /> : <Filter size={20} />}

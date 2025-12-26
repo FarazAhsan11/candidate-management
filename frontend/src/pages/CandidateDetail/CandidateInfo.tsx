@@ -32,14 +32,22 @@ export default function CandidateInfo({ candidate }: Props) {
 
 
   useEffect(() => {
-    const width = window.innerWidth;
-    if (width < 640) {
-      setPdfWidth(275);
-    } else if (width < 1024) {
-      setPdfWidth(500);
-    } else {
-      setPdfWidth(500);
-    }
+    const updatePdfWidth = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setPdfWidth(300);
+      } else if (width < 1024) {
+        setPdfWidth(600);
+      } else if (width < 1536) {
+        setPdfWidth(700);
+      } else {
+        setPdfWidth(850);
+      }
+    };
+
+    updatePdfWidth();
+    window.addEventListener('resize', updatePdfWidth);
+    return () => window.removeEventListener('resize', updatePdfWidth);
   }, []);
 
   const [numPages, setNumPages] = useState<number>();
@@ -50,10 +58,10 @@ export default function CandidateInfo({ candidate }: Props) {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-      <div className="bg-[#dedbd2] rounded-lg flex flex-col lg:col-span-3">
+    <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <div className="bg-[#dedbd2] rounded-lg flex flex-col xl:col-span-2">
       <Tabs defaultValue="resume">
-      <TabsList className="bg-[#dedbd2] shadow-lg">
+      <TabsList className="bg-[#dedbd2]  shadow-lg">
         <TabsTrigger value="resume">Resume</TabsTrigger>
         <TabsTrigger value="loom-video">Loom Video</TabsTrigger>
       </TabsList>
@@ -134,7 +142,7 @@ export default function CandidateInfo({ candidate }: Props) {
 
       </div>
 
-      <div className="flex flex-col gap-2 lg:col-span-2">
+      <div className="flex flex-col gap-2 xl:col-span-1">
         <div className="bg-[#dedbd2] border border-[#23140c] rounded-lg p-6">
           <h2 className="text-lg font-semibold text-[#23140c] mb-4 flex items-center gap-2">
             <span>

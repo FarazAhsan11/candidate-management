@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, MessageCircle } from 'lucide-react';
 import { candidateService } from '../../services/candidateService';
 import type { Candidate } from '../../types/candidate';
 import CandidateInfo from './CandidateInfo';
 import RemarksWidget from './RemarksWidget';
+import { Button } from '../../components/ui/button';
 
 export default function CandidateDetail() {
   const { id } = useParams<{ id: string }>();
@@ -12,6 +13,7 @@ export default function CandidateDetail() {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [remarksOpen, setRemarksOpen] = useState(false);
 
   useEffect(() => {
     const fetchCandidate = async () => {
@@ -46,32 +48,38 @@ export default function CandidateDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-[#dedbd2]  p-6">
+    <div className="min-h-screen bg-[#dedbd2] p-6">
       <div className="px-4 sm:px-8 lg:px-16">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => navigate('/')}
+              className="text-[#23140c] hover:text-white flex items-center gap-2 cursor-pointer"
+            >
+              <ArrowLeft size={20} />
+            </button>
+            <h1 className="text-lg sm:text-2xl font-medium text-[#23140c]">
+              {candidate.name} - {candidate.appliedPosition}
+            </h1>
+          </div>
 
-
-        <div className="flex gap-4 mb-6  pb-4">
-          <button
-            onClick={() => navigate('/')}
-            className="text-[#23140c] hover:text-white flex items-center gap-2 cursor-pointer"
+          <Button
+            onClick={() => setRemarksOpen(true)}
+            className="bg-[#4a2c1a] hover:bg-[#5a3c2a] text-[#dedbd2] gap-2"
           >
-            <ArrowLeft size={20} />
-           
-          </button>
-<h1 className="text-lg sm:text-2xl font-medium text-[#23140c]">
-  {candidate.name} - {candidate.appliedPosition}
-</h1>
+            <MessageCircle size={18} />
+            Remarks & Status
+          </Button>
+        </div>
 
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <CandidateInfo candidate={candidate} />
-          </div>
-          <div>
-            <RemarksWidget candidate={candidate} onUpdate={setCandidate} />
-          </div>
-        </div>
+        <CandidateInfo candidate={candidate} />
+
+        <RemarksWidget
+          candidate={candidate}
+          onUpdate={setCandidate}
+          open={remarksOpen}
+          onOpenChange={setRemarksOpen}
+        />
       </div>
     </div>
   );
