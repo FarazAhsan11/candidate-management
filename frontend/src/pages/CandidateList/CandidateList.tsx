@@ -93,7 +93,6 @@ export default function CandidateList({
         <div className="p-6 bg-white shadow-lg rounded-xl border border-gray-200">
           <div className="flex items-center gap-3">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-            <span className="text-gray-700 font-medium">Loading...</span>
           </div>
         </div>
       </div>

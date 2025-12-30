@@ -1,6 +1,7 @@
-import Candidates from "../models/Candidates.js";
-import { uploadOnCloudinary } from "../utils/Cloudinary.js";
-import { validateCandidate } from "../validators/CandidateValidator.js";
+
+import Candidates from "../models/candidate.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { validateCandidate } from "../validators/candidateValidator.js";
 
 export const getAllCandidates = async (req, res) => {
   try {

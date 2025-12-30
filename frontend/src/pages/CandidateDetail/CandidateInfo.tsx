@@ -4,6 +4,7 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { useState, useEffect } from "react";
 import LoomPlayer from 'react-loom-player';
+import { useAuth } from "@/context/authContext";
 import {
   ChevronLeft,
   ChevronRight,
@@ -19,6 +20,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "../../components/ui/tabs"
+import InfoCard from "../../components/infoCard";
+import InfoRow from "../../components/infoRow";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -29,13 +32,13 @@ interface Props {
 export default function CandidateInfo({ candidate }: Props) {
   const [pdfWidth, setPdfWidth] = useState(400);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
-
+  const {user} = useAuth();
 
   useEffect(() => {
     const updatePdfWidth = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        setPdfWidth(300);
+        setPdfWidth(280);
       } else if (width < 1024) {
         setPdfWidth(600);
       } else if (width < 1536) {
@@ -142,109 +145,37 @@ export default function CandidateInfo({ candidate }: Props) {
 
       </div>
 
-      <div className="flex flex-col gap-4 xl:col-span-1">
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="text-blue-600">
-              <FileUser />
-            </span>
-            BASIC INFO
-          </h2>
-          <div className="space-y-3 text-gray-900">
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Name:</span>
-              <span className="font-semibold">{candidate.name}</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Email:</span>
-              <span className="font-semibold">{candidate.email}</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Phone:</span>
-              <span className="font-semibold">{candidate.phone}</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">City:</span>
-              <span className="font-semibold">{candidate.city}</span>
-            </p>
-          </div>
-        </div>
+      {user?.role === 'hr' && (
+        <div className="flex flex-col gap-4 xl:col-span-1">
+          <InfoCard title="BASIC INFO" icon={<FileUser />}>
+            <InfoRow label="Name" value={candidate.name} />
+            <InfoRow label="Email" value={candidate.email} />
+            <InfoRow label="Phone" value={candidate.phone} />
+            <InfoRow label="City" value={candidate.city} />
+          </InfoCard>
 
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="text-blue-600">
-              <FileUser />
-            </span>
-            EDUCATION
-          </h2>
-          <div className="space-y-3 text-gray-900">
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Institute:</span>
-              <span className="font-semibold">{candidate.institute}</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Degree:</span>
-              <span className="font-semibold">{candidate.educationLevel}</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Year:</span>
-              <span className="font-semibold">{candidate.graduationYear}</span>
-            </p>
-          </div>
-        </div>
+          <InfoCard title="EDUCATION" icon={<FileUser />}>
+            <InfoRow label="Institute" value={candidate.institute} />
+            <InfoRow label="Degree" value={candidate.educationLevel} />
+            <InfoRow label="Year" value={candidate.graduationYear} />
+          </InfoCard>
 
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="text-blue-600">
-              <BriefcaseBusiness />
-            </span>
-            PROFESSIONAL
-          </h2>
-          <div className="space-y-3 text-gray-900">
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Current:</span>
-              <span className="font-semibold">{candidate.currentPosition}</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Company:</span>
-              <span className="font-semibold">{candidate.currentCompany}</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Experience:</span>
-              <span className="font-semibold">{candidate.experienceYears} years</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Notice:</span>
-              <span className="font-semibold">{candidate.noticePeriod}</span>
-            </p>
-          </div>
-        </div>
+          <InfoCard title="PROFESSIONAL" icon={<BriefcaseBusiness />}>
+            <InfoRow label="Current" value={candidate.currentPosition} />
+            <InfoRow label="Company" value={candidate.currentCompany} />
+            <InfoRow label="Experience" value={`${candidate.experienceYears} years`} />
+            <InfoRow label="Notice" value={candidate.noticePeriod} />
+          </InfoCard>
 
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="text-blue-600">
-              <Wallet />
-            </span>
-            COMPENSATION
-          </h2>
-          <div className="space-y-3 text-gray-900">
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Current:</span>
-              <span className="font-semibold">{candidate.currentSalary}</span>
-            </p>
-            <p className="flex justify-between">
-              <span className="text-gray-500 font-medium">Expected:</span>
-              <span className="font-semibold">{candidate.expectedSalary}</span>
-            </p>
+          <InfoCard title="COMPENSATION" icon={<Wallet />}>
+            <InfoRow label="Current" value={candidate.currentSalary} />
+            <InfoRow label="Expected" value={candidate.expectedSalary} />
             {!!candidate.expectedSalaryPartTime && (
-              <p className="flex justify-between">
-                <span className="text-gray-500 font-medium">Part-time:</span>
-                <span className="font-semibold">{candidate.expectedSalaryPartTime}</span>
-              </p>
+              <InfoRow label="Part-time" value={candidate.expectedSalaryPartTime} />
             )}
-          </div>
+          </InfoCard>
         </div>
-      </div>
+      )}
     </div>
   );
 }

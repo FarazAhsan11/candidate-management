@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, MessageCircle } from 'lucide-react';
 import { candidateService } from '../../services/candidateService';
 import type { Candidate } from '../../types/candidate';
-import CandidateInfo from './CandidateInfo';
-import RemarksWidget from './RemarksWidget';
+import CandidateInfo from './candidateInfo';
+import RemarksWidget from './remarksWidget';
 import { Button } from '../../components/ui/button';
 
 export default function CandidateDetail() {
@@ -37,7 +37,6 @@ export default function CandidateDetail() {
         <div className="p-6 bg-white shadow-lg rounded-xl border border-gray-200">
           <div className="flex items-center gap-3">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-            <span className="text-gray-700 font-medium">Loading...</span>
           </div>
         </div>
       </div>
